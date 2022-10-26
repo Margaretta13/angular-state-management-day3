@@ -1,0 +1,29 @@
+<div *ngIf="model$ | async as model">
+  <button
+    [disabled]="model.loggedIn === false"
+    class="btn btn-primary"
+    (click)="decrement()"
+  >
+    -
+  </button>
+  <span>{{ model.current }}</span>
+  <button
+    class="btn btn-primary"
+    (click)="increment()"
+  >
+    +
+  </button>
+  <div>
+    <button
+      [disabled]="model.atBeginning === true"
+      (click)="reset()"
+      class="btn btn-danger"
+    >
+      RESET
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<pre> {{ model$ | async | json }}</pre>

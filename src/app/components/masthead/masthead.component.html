@@ -1,0 +1,20 @@
+<header class="container-fluid">
+  <h1>Angular State Management</h1>
+  <p>From the Hypertheory Class</p>
+  <div>
+    <button
+      (click)="logOut()"
+      *ngIf="(isLoggedIn$ | async) === true"
+      class="btn btn-primary"
+    >
+      {{ userName$ | async }} (Click to Log Off)
+    </button>
+    <button
+      (click)="logIn()"
+      *ngIf="(isLoggedIn$ | async) === false"
+      class="btn btn-primary"
+    >
+      Log In
+    </button>
+  </div>
+</header>
