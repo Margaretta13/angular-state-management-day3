@@ -12,6 +12,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { FeatureEffects } from './state/effects/feature.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { SongListEffects } from './state/effects/song-list.effects';
+import { LoggedInGuard } from './logged-in.guard';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +23,19 @@ import { SongListEffects } from './state/effects/song-list.effects';
     ListComponent,
     EntryComponent,
     NavigationComponent,
+    ErrorDisplayComponent,
   ],
   imports: [
     CommonModule,
     SongsRoutingModule,
     StoreModule.forFeature(FEATURE_NAME, reducers),
     HttpClientModule,
+    ReactiveFormsModule,
     EffectsModule.forFeature([
       FeatureEffects,
       SongListEffects,
     ]),
   ],
+  providers: [LoggedInGuard],
 })
 export class SongsModule {}

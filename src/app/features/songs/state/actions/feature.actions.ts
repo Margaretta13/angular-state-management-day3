@@ -4,5 +4,6 @@ export const SongsFeatureEvents = createActionGroup({
   source: 'Songs SongsFeature Events',
   events: {
     entered: emptyProps(),
+    apiError: props<{ payload: string }>(),
   },
 });
