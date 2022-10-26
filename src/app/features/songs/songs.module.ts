@@ -8,6 +8,9 @@ import { SongsRoutingModule } from './songs-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { StoreModule } from '@ngrx/store';
 import { FEATURE_NAME, reducers } from './state';
+import { EffectsModule } from '@ngrx/effects';
+import { FeatureEffects } from './state/effects/feature.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { FEATURE_NAME, reducers } from './state';
     CommonModule,
     SongsRoutingModule,
     StoreModule.forFeature(FEATURE_NAME, reducers),
+    HttpClientModule,
+    EffectsModule.forFeature([FeatureEffects]),
   ],
 })
 export class SongsModule {}
