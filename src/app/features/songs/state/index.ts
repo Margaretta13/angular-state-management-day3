@@ -16,22 +16,22 @@ export const reducers: ActionReducerMap<SongsState> = {
   list: fromSongList.reducer,
 };
 
-// feature selector
+// 1. feature selector
 const selectFeature = createFeatureSelector<SongsState>(FEATURE_NAME);
 
-//
+// 2 One per branch
+const selectSongListBranch = createSelector(selectFeature, (f) => f.list);
 
-export const selectSongListModel = createSelector(() => {
-  const model: SongListModel = {
-    songs: [
-      { id: '1', title: 'Song #1', artist: 'Fugazi' },
-      {
-        id: '2',
-        title: 'National Anthem',
-        artist: 'Radio Head',
-        album: 'Kid A',
-      },
-    ],
-  };
-  return model;
-});
+// 3 Helpers
+const { selectAll: selectAllSongListEntityArray } =
+  fromSongList.adapter.getSelectors(selectSongListBranch);
+
+export const selectSongListModel = createSelector(
+  selectAllSongListEntityArray,
+  (songs) => {
+    const model: SongListModel = {
+      songs,
+    };
+    return model;
+  },
+);

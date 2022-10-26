@@ -11,6 +11,7 @@ import { FEATURE_NAME, reducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
 import { FeatureEffects } from './state/effects/feature.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { SongListEffects } from './state/effects/song-list.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     SongsRoutingModule,
     StoreModule.forFeature(FEATURE_NAME, reducers),
     HttpClientModule,
-    EffectsModule.forFeature([FeatureEffects]),
+    EffectsModule.forFeature([
+      FeatureEffects,
+      SongListEffects,
+    ]),
   ],
 })
 export class SongsModule {}
